@@ -1,0 +1,20 @@
+2026-09-30T06:27:31.079+00:00 $ python scripts/memory_budget.py --batch 2 --seq 1024
+2026-09-30T06:27:31.572+00:00 model Qwen/Qwen2.5-1.5B-Instruct: hidden 1536, layers 28, vocab 151936, tied=True
+2026-09-30T06:27:31.572+00:00 shape: batch 2 -> 4 rows (chosen+rejected) x seq 1024; LoRA r=16 on q_proj,v_proj = 2,179,072 params
+2026-09-30T06:27:31.572+00:00 one logits copy = 4 x 1024 x 151936 x 4 B = 2.32 GiB
+2026-09-30T06:27:31.572+00:00   embedding / tied lm_head (resident, fp16)              0.435 GiB  ( 3.9%)
+2026-09-30T06:27:31.572+00:00   streamed layer buffers (2 x one layer)                 0.174 GiB  ( 1.6%)
+2026-09-30T06:27:31.572+00:00   LoRA weights fp32 (cast for the fp16 GradScaler)       0.008 GiB  ( 0.1%)
+2026-09-30T06:27:31.572+00:00   LoRA grads fp32                                        0.008 GiB  ( 0.1%)
+2026-09-30T06:27:31.572+00:00   AdamW m + v fp32                                       0.016 GiB  ( 0.1%)
+2026-09-30T06:27:31.572+00:00   TRL 'ref' adapter snapshot fp32                        0.008 GiB  ( 0.1%)
+2026-09-30T06:27:31.572+00:00   activation checkpoints (layer inputs, fp16)            0.328 GiB  ( 3.0%)
+2026-09-30T06:27:31.572+00:00   one layer recompute working set (MLP dominates)        0.275 GiB  ( 2.5%)
+2026-09-30T06:27:31.572+00:00   policy logits + shifted copy (kept for backward)       4.637 GiB  (41.7%)
+2026-09-30T06:27:31.572+00:00   reference logits + shifted copy (no_grad, transient)   4.637 GiB  (41.7%)
+2026-09-30T06:27:31.572+00:00   logsumexp temp, one row (fp32 branch)                  0.580 GiB  ( 5.2%)
+2026-09-30T06:27:31.572+00:00   ---------------------------------------------------- -------
+2026-09-30T06:27:31.573+00:00   predicted torch max_memory_allocated                  11.106 GiB  = 11.93 GB
+2026-09-30T06:27:31.573+00:00   + CUDA context (nvidia-smi only, assumed)              0.373 GiB
+2026-09-30T06:27:31.573+00:00   predicted nvidia-smi floor (before allocator slack)   11.479 GiB
+2026-09-30T06:27:31.573+00:00 What streaming saved: the resident alternative holds every layer, 2.44 GiB of decoder weights, instead of 0.17 GiB of buffers.
