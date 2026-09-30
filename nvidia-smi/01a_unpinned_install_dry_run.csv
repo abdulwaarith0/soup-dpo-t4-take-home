@@ -1,0 +1,11 @@
+timestamp, name, memory.used [MiB], memory.free [MiB], memory.total [MiB], utilization.gpu [%], utilization.memory [%], clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], temperature.gpu, pstate
+2026/09/30 06:24:17.268, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.12 W, 42, P8
+2026/09/30 06:24:17.939, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 885 MHz, 5000 MHz, 27.65 W, 43, P0
+2026/09/30 06:24:18.451, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 885 MHz, 5000 MHz, 27.65 W, 44, P0
+2026/09/30 06:24:18.960, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 885 MHz, 5000 MHz, 27.75 W, 44, P0
+2026/09/30 06:24:19.476, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.12 W, 43, P8
+2026/09/30 06:24:19.990, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.03 W, 43, P8
+2026/09/30 06:24:20.503, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.03 W, 43, P8
+2026/09/30 06:24:21.029, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.03 W, 43, P8
+2026/09/30 06:24:21.542, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.03 W, 43, P8
+2026/09/30 06:24:22.055, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.03 W, 43, P8
