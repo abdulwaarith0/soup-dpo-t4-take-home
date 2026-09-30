@@ -1,0 +1,8 @@
+2026-09-30T06:26:32.114+00:00 $ python data/prepare_data.py
+2026-09-30T06:26:37.178+00:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-09-30T06:26:40.222+00:00 Generating train split:   0%|          | 0/1322 [00:00<?, ? examples/s]
+2026-09-30T06:26:40.223+00:00 Generating train split: 100%|██████████| 1322/1322 [00:00<00:00, 23455.75 examples/s]
+2026-09-30T06:26:40.284+00:00 train.jsonl: 500 rows  sha256[:16]=9c2b4afb86c99846
+2026-09-30T06:26:40.288+00:00 holdout.jsonl: 100 rows  sha256[:16]=975ddce4a2943d8f
+2026-09-30T06:26:40.289+00:00 task_eval_ru.jsonl: 40 tasks
+2026-09-30T06:26:40.289+00:00 source: 0x7o/oasst-ru-dpo-v1@56af31c2bb770371974508a47b3e8193a73dc3af  rows: 1322  seed: 1337
