@@ -10,7 +10,7 @@ Read [`REPORT.md`](REPORT.md) (2 pages, also [`REPORT.pdf`](REPORT.pdf)); the fu
 
 | Path | What |
 |---|---|
-| `notebook/soup_dpo_t4.ipynb` | the Colab notebook as planned; `notebook/soup_dpo_t4_executed.ipynb` is the T4 session with its outputs |
+| `notebook/soup_dpo_t4.ipynb` | the Colab cells in the order they ran on the T4, including the failed first run and the workaround; each cell's output is in the phase log it names (the tab holding the live outputs was closed before saving) |
 | `configs/dpo_stream_t4.yaml` | the run under review; `control_recipe_lr.yaml` and `fixed_data.yaml` are the control and fix runs; `colab_*.yaml` are the exact configs run on Colab (only `base:` differs, see APPENDIX B) |
 | `data/` | the 500-pair train set, the 100-pair holdout, the fixed set, and how each was made |
 | `scripts/verify_training.py` | Part 2: tells a real run from one that changed nothing or learned a shortcut, with null and random controls |
