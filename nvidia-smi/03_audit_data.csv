@@ -1,0 +1,18 @@
+timestamp, name, memory.used [MiB], memory.free [MiB], memory.total [MiB], utilization.gpu [%], utilization.memory [%], clocks.current.sm [MHz], clocks.current.memory [MHz], power.draw [W], temperature.gpu, pstate
+2026/09/30 06:26:40.752, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.32 W, 46, P8
+2026/09/30 06:26:41.299, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 765 MHz, 5000 MHz, 28.04 W, 47, P0
+2026/09/30 06:26:41.808, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 765 MHz, 5000 MHz, 28.04 W, 47, P0
+2026/09/30 06:26:42.321, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 765 MHz, 5000 MHz, 28.04 W, 47, P0
+2026/09/30 06:26:42.831, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 28.13 W, 47, P8
+2026/09/30 06:26:43.347, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.32 W, 46, P8
+2026/09/30 06:26:43.864, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.32 W, 46, P8
+2026/09/30 06:26:44.380, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:44.895, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:45.413, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:45.940, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:46.455, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:46.970, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.32 W, 46, P8
+2026/09/30 06:26:47.485, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:48.000, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:48.517, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
+2026/09/30 06:26:49.032, Tesla T4, 0 MiB, 14913 MiB, 15360 MiB, 0 %, 0 %, 300 MHz, 405 MHz, 14.22 W, 46, P8
