@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+runs/**/checkpoint-*/
+runs/**/training_args.bin
+runs/**/tokenizer*.json
+runs/**/chat_template.jinja
+runs/verify_controls/
+runs/smoke/
+runs/te5.jsonl
+*.zip
