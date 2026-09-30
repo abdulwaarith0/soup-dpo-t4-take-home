@@ -9,3 +9,4 @@ runs/verify_controls/
 runs/smoke/
 runs/te5.jsonl
 *.zip
+runs/smoke_fixed/
