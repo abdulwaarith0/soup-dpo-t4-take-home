@@ -11,7 +11,7 @@ data:
   val_split: 0.0          # 0.75.1 default is 0.1, and DPO never evaluates it (see report)
 
 training:
-  epochs: 2
+  epochs: 1               # one pass = 63 optimizer steps; the free T4's daily quota sets this
   lr: 5.0e-6              # the catalog recipes' value (see report)
   batch_size: 2
   gradient_accumulation_steps: 4   # effective batch 8 -> 63 optimizer steps per epoch
