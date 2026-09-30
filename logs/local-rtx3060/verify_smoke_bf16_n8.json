@@ -1,0 +1,231 @@
+{
+  "base": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dtype": "bfloat16",
+  "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "arms": {
+    "trained": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "56/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+        "pass": true
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "3.47e-04",
+        "max_rel_delta": "5.40e-04"
+      },
+      "B_max_logit_shift": 1.25,
+      "C_holdout": {
+        "n": 8,
+        "accuracy": 0.625,
+        "accuracy_95ci": [
+          0.306,
+          0.863
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.03141
+      },
+      "C_train_same_n": {
+        "n": 8,
+        "accuracy": 0.875,
+        "accuracy_95ci": [
+          0.529,
+          0.978
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.10837
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 3,
+        "accuracy": 0.333,
+        "accuracy_95ci": [
+          0.061,
+          0.792
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.05578
+      },
+      "D_holdout_chat_template": {
+        "n": 8,
+        "accuracy": 0.75,
+        "accuracy_95ci": [
+          0.409,
+          0.929
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.06168
+      },
+      "verdict": {
+        "A_artifact": true,
+        "B_load": true,
+        "C_learned_on_unseen_pairs": false
+      }
+    },
+    "null": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "0/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+        "pass": false
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "0.00e+00",
+        "max_rel_delta": "0.00e+00"
+      },
+      "B_max_logit_shift": 0.0,
+      "C_holdout": {
+        "n": 8,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.324
+        ],
+        "exact_ties": 8,
+        "mean_margin": 0.0
+      },
+      "C_train_same_n": {
+        "n": 8,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.324
+        ],
+        "exact_ties": 8,
+        "mean_margin": 0.0
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 3,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.562
+        ],
+        "exact_ties": 3,
+        "mean_margin": 0.0
+      },
+      "D_holdout_chat_template": {
+        "n": 8,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.324
+        ],
+        "exact_ties": 8,
+        "mean_margin": 0.0
+      },
+      "verdict": {
+        "A_artifact": false,
+        "B_load": false,
+        "C_learned_on_unseen_pairs": false
+      }
+    },
+    "random": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "56/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+        "pass": true
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "3.45e-04",
+        "max_rel_delta": "5.37e-04"
+      },
+      "B_max_logit_shift": 1.0625,
+      "C_holdout": {
+        "n": 8,
+        "accuracy": 0.375,
+        "accuracy_95ci": [
+          0.137,
+          0.694
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.01658
+      },
+      "C_train_same_n": {
+        "n": 8,
+        "accuracy": 0.625,
+        "accuracy_95ci": [
+          0.306,
+          0.863
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.01797
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 3,
+        "accuracy": 0.333,
+        "accuracy_95ci": [
+          0.061,
+          0.792
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.01624
+      },
+      "D_holdout_chat_template": {
+        "n": 8,
+        "accuracy": 0.625,
+        "accuracy_95ci": [
+          0.306,
+          0.863
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.01971
+      },
+      "verdict": {
+        "A_artifact": true,
+        "B_load": true,
+        "C_learned_on_unseen_pairs": false
+      }
+    }
+  },
+  "overall_pass": false,
+  "controls_rejected": {
+    "null": true,
+    "random": true
+  }
+}
