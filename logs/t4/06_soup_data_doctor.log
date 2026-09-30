@@ -1,0 +1,3 @@
+2026-09-30T06:26:52.733+00:00 $ soup data doctor data/train.jsonl --model Qwen/Qwen2.5-1.5B-Instruct
+2026-09-30T06:26:53.421+00:00 Error: format='dpo' is preference data — use soup data lint instead of soup data
+2026-09-30T06:26:53.421+00:00 doctor.
