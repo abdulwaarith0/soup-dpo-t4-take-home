@@ -1,0 +1,8 @@
+python 3.12.3
+torch 2.14.0+cu130 cuda 13.0
+transformers 5.17.0
+peft 0.21.1
+trl 0.29.1
+accelerate 1.15.0
+soup-cli 0.75.1
+bf16 native: False | bf16 incl. emulation: True
