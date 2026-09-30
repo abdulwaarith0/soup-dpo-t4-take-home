@@ -15,14 +15,26 @@ process, from the saved adapter file, on pairs the run never saw:
   D  shortcuts  C again on the held-out pairs where the chosen answer is SHORTER
                 (a length shortcut fails here), and C again with the prompt in
                 Qwen's own chat template, the format soup ship and serving use
+  E  verdict    length-BALANCED held-out accuracy in the serving template: the mean of
+                the chosen-longer and chosen-shorter accuracies, 95% CI above 0.5
+
+Why E and not C. The first version passed when C's CI cleared 0.5. On this data that
+credits a shortcut: 65 of the 100 held-out pairs have the longer answer chosen, so a
+model that only learned "prefer the longer answer" scores about 65%. The catalog-lr
+control run (5e-6) passed that rule with a lower bound of 0.502 while being right on
+only 23% of the chosen-shorter pairs. Balanced accuracy is exactly 0.5 for any pure
+length heuristic, so E is the verdict now; the old rule is still printed, labelled
+superseded, so the change is visible in every output.
 
 The same checks run on two controls built from the trained adapter itself:
   null    lora_B zeroed: a run that "completed" but changed nothing (for example an
           adapter that saved empty, or never loaded)
   random  lora_B replaced by Gaussian noise of the same norm: the weights DO change,
-          so A and B pass, but nothing was learned, so C must fail
+          so A and B pass, but nothing was learned, so the verdict must fail
 
 Usage (T4):  python scripts/verify_training.py --adapter runs/main --dtype float32
+             python scripts/verify_training.py --adapter runs/fixed --train data/train_fixed.jsonl \
+                 --no-controls --out runs/verify_fixed.json
 """
 
 import argparse
@@ -99,6 +111,35 @@ def margins(model, tok, pairs: list, beta: float, max_length: int, device) -> li
             rr = completion_logp(model, tok, row["prompt"], row["rejected"], max_length, device)
         out.append(beta * ((pc - rc) - (pr - rr)))
     return out
+
+
+def row_to_text(row: dict, tok) -> dict:
+    """String rows pass through; conversational rows are rendered with the model's own template."""
+    if isinstance(row["prompt"], str):
+        return row
+    prompt = tok.apply_chat_template(row["prompt"], tokenize=False, add_generation_prompt=True)
+    return {"prompt": prompt, "chosen": row["chosen"][-1]["content"],
+            "rejected": row["rejected"][-1]["content"]}
+
+
+def pick(ms: list, flags: list, want: bool = True) -> list:
+    return [m for m, f in zip(ms, flags) if f == want]
+
+
+def balanced(ms: list, shorter_flags: list) -> dict:
+    """Mean of the accuracies on chosen-longer and chosen-shorter pairs. A model that only
+    learned "prefer the longer answer" scores exactly 0.5 here, whatever the length mix of the
+    held-out set. CI: normal approximation over the two independent slices."""
+    s, l = pick(ms, shorter_flags, True), pick(ms, shorter_flags, False)
+    if not s or not l:
+        return {"accuracy": None, "accuracy_95ci": (float("nan"), float("nan"))}
+    ps, pl = sum(m > 0 for m in s) / len(s), sum(m > 0 for m in l) / len(l)
+    bal = (ps + pl) / 2
+    se = 0.5 * math.sqrt(ps * (1 - ps) / len(s) + pl * (1 - pl) / len(l))
+    return {"accuracy": round(bal, 3),
+            "accuracy_95ci": (round(bal - 1.96 * se, 3), round(bal + 1.96 * se, 3)),
+            "chosen_longer": {"n": len(l), "accuracy": round(pl, 3)},
+            "chosen_shorter": {"n": len(s), "accuracy": round(ps, 3)}}
 
 
 def summarise(ms: list) -> dict:
@@ -229,10 +270,10 @@ def main() -> int:
         arms.update(make_controls(args.adapter, args.adapter.parent / "verify_controls", args.seed))
 
     holdout = load_pairs(args.holdout, args.n)
-    train = load_pairs(args.train, args.n)
-    shorter = [r for r in holdout if len(r["chosen"]) < len(r["rejected"])]
+    train = [row_to_text(r, tok) for r in load_pairs(args.train, args.n)]
+    short_raw = [len(r["chosen"]) < len(r["rejected"]) for r in holdout]
     chat = [c for c in (to_chat_format(r, tok) for r in holdout) if c]
-    chat_shorter = [c for c in chat if len(c["chosen"]) < len(c["rejected"])]
+    short_chat = [len(c["chosen"]) < len(c["rejected"]) for c in chat]
     probe = holdout[0]["prompt"] + holdout[0]["chosen"]
 
     model = None
@@ -245,26 +286,30 @@ def main() -> int:
             model.load_adapter(str(path), adapter_name=name)
         model.set_adapter(name)
         model.eval()
+        m_hold = margins(model, tok, holdout, args.beta, args.max_length, device)
+        m_chat = margins(model, tok, chat, args.beta, args.max_length, device)
+        m_train = margins(model, tok, train, args.beta, args.max_length, device)
         res = {
             "A_artifact": check_artifact(path, n_layers),
             "B_load": check_load(model, path, name),
             "B_delta_norms": delta_norms(model, name),
             "B_max_logit_shift": round(logit_shift(model, tok, probe, device), 5),
-            "C_holdout": summarise(margins(model, tok, holdout, args.beta, args.max_length, device)),
-            "C_train_same_n": summarise(margins(model, tok, train, args.beta, args.max_length, device)),
-            "D_holdout_chosen_shorter": summarise(
-                margins(model, tok, shorter, args.beta, args.max_length, device)),
-            "D_holdout_chat_template": summarise(
-                margins(model, tok, chat, args.beta, args.max_length, device)),
-            "D_holdout_chat_template_chosen_shorter": summarise(
-                margins(model, tok, chat_shorter, args.beta, args.max_length, device)),
+            "C_holdout": summarise(m_hold),
+            "C_train_same_n": summarise(m_train),
+            "D_holdout_chosen_shorter": summarise(pick(m_hold, short_raw)),
+            "D_holdout_chat_template": summarise(m_chat),
+            "D_holdout_chat_template_chosen_shorter": summarise(pick(m_chat, short_chat)),
+            "E_length_balanced_holdout": balanced(m_hold, short_raw),
+            "E_length_balanced_chat_template": balanced(m_chat, short_chat),
         }
-        c = res["C_holdout"]
+        e = res["E_length_balanced_chat_template"]
         res["verdict"] = {
             "A_artifact": res["A_artifact"]["pass"],
             "B_load": res["B_load"]["pass"] and res["B_max_logit_shift"] > 0,
-            "C_learned_on_unseen_pairs": c["accuracy_95ci"][0] > 0.5,
+            "C_beats_length_heuristic_in_serving_format": e["accuracy_95ci"][0] > 0.5,
         }
+        # The first rule, kept for the record: it credited a pure length heuristic (see docstring).
+        res["superseded_rule_holdout_accuracy_above_0.5"] = res["C_holdout"]["accuracy_95ci"][0] > 0.5
         report["arms"][name] = res
         print(f"\n=== {name} ({path})")
         print(json.dumps(res, indent=2, ensure_ascii=False), flush=True)
