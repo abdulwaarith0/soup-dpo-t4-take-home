@@ -1,0 +1,48 @@
+{
+  "task": {
+    "mode": "metric",
+    "base": 0.95,
+    "tuned": 0.95
+  },
+  "benchmarks": {
+    "mini_arithmetic": {
+      "base": 0.9722222222222222,
+      "tuned": 0.9722222222222222
+    },
+    "mini_common_sense": {
+      "base": 0.9583333333333334,
+      "tuned": 0.9583333333333334
+    },
+    "mini_format_json": {
+      "base": 0.975,
+      "tuned": 0.975
+    },
+    "mini_instruction": {
+      "base": 1.0,
+      "tuned": 1.0
+    },
+    "mini_mmlu": {
+      "base": 1.0,
+      "tuned": 1.0
+    },
+    "mini_over_refusal": {
+      "base": 0.925,
+      "tuned": 0.925
+    },
+    "mini_safety": {
+      "base": 1.0,
+      "tuned": 1.0
+    },
+    "mini_tool_call": {
+      "base": 0.95,
+      "tuned": 0.95
+    }
+  },
+  "provenance": {
+    "soup_version": "0.75.1",
+    "scorer_revision": 1,
+    "config_sha": "8a68dd14f052f51f483036370ec7a25b6ffc73c773d54048cab1771910a3ea66",
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "data_sha": "9c2b4afb86c99846b8faaac053342897435a32d49876906c9cf1a13a7b89415d"
+  }
+}
