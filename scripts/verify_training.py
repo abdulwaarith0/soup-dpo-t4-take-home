@@ -232,6 +232,7 @@ def main() -> int:
     train = load_pairs(args.train, args.n)
     shorter = [r for r in holdout if len(r["chosen"]) < len(r["rejected"])]
     chat = [c for c in (to_chat_format(r, tok) for r in holdout) if c]
+    chat_shorter = [c for c in chat if len(c["chosen"]) < len(c["rejected"])]
     probe = holdout[0]["prompt"] + holdout[0]["chosen"]
 
     model = None
@@ -255,6 +256,8 @@ def main() -> int:
                 margins(model, tok, shorter, args.beta, args.max_length, device)),
             "D_holdout_chat_template": summarise(
                 margins(model, tok, chat, args.beta, args.max_length, device)),
+            "D_holdout_chat_template_chosen_shorter": summarise(
+                margins(model, tok, chat_shorter, args.beta, args.max_length, device)),
         }
         c = res["C_holdout"]
         res["verdict"] = {
