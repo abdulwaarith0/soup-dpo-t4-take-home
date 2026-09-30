@@ -1,0 +1,104 @@
+2026-09-30T05:47:29.584+00:00 Loading config from configs\smoke_local.yaml...
+2026-09-30T05:47:34.532+00:00 ┌────────────────────────────── Training Setup ───────────────────────────────┐
+2026-09-30T05:47:34.532+00:00 │ Device:  NVIDIA GeForce RTX 3060 Laptop GPU                                 │
+2026-09-30T05:47:34.532+00:00 │ Memory:  6.0 GB                                                             │
+2026-09-30T05:47:34.532+00:00 │ Model:   Qwen/Qwen2.5-1.5B-Instruct                                         │
+2026-09-30T05:47:34.532+00:00 │ Task:    dpo                                                                │
+2026-09-30T05:47:34.532+00:00 │ Backend: transformers                                                       │
+2026-09-30T05:47:34.533+00:00 │ LoRA:    r=16, alpha=32                                                     │
+2026-09-30T05:47:34.533+00:00 │ Quant:   none                                                               │
+2026-09-30T05:47:34.533+00:00 │ Seed:    42                                                                 │
+2026-09-30T05:47:34.533+00:00 └─────────────────────────────────────────────────────────────────────────────┘
+2026-09-30T05:47:34.534+00:00 Loading dataset...
+2026-09-30T05:47:34.536+00:00 Loaded: 16 train samples
+2026-09-30T05:47:34.560+00:00 Run ID: run_20260930_084734_813d6aa1
+2026-09-30T05:47:34.562+00:00 Setting up model + trainer...
+2026-09-30T05:47:45.844+00:00 W0930 08:47:45.842000 62128 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+2026-09-30T05:47:47.994+00:00 Loading tokenizer: Qwen/Qwen2.5-1.5B-Instruct
+2026-09-30T05:47:48.447+00:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-09-30T05:47:51.148+00:00 Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]
+2026-09-30T05:47:51.148+00:00 Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 891.80it/s]
+2026-09-30T05:47:51.152+00:00 ┌────────────────────── Layer streaming disk pre-flight ──────────────────────┐
+2026-09-30T05:47:51.152+00:00 │ HF/local source: 3.09 GB                                                    │
+2026-09-30T05:47:51.152+00:00 │ Soup materialized copy: 0.00 GB (no write required)                         │
+2026-09-30T05:47:51.152+00:00 │ Layer-shard cache: 3.09 GB (reusable)                                       │
+2026-09-30T05:47:51.152+00:00 │ Projected total on disk: 6.17 GB                                            │
+2026-09-30T05:47:51.152+00:00 │ Additional writes before training: 0.00 GB                                  │
+2026-09-30T05:47:51.152+00:00 └─────────────────────────────────────────────────────────────────────────────┘
+2026-09-30T05:47:51.155+00:00 Preparing layer shards -> 
+2026-09-30T05:47:51.155+00:00 C:\Users\Abdulwaarith\.soup\layer-stream\Qwen__Qwen2.5-1.5B-Instruct
+2026-09-30T05:47:52.088+00:00 ┌────────────────────────── training.stream_layers ───────────────────────────┐
+2026-09-30T05:47:52.088+00:00 │ Layer streaming BETA — arch qwen2, tier ram                                 │
+2026-09-30T05:47:52.089+00:00 │   base store   2.62 GB across 28 layers (pinned)                            │
+2026-09-30T05:47:52.089+00:00 │   VRAM buffers 2 x 94 MB + 1 x 0 MB large-layer slot = 187 MB               │
+2026-09-30T05:47:52.089+00:00 │   resident     467 MB extras + adapters                                     │
+2026-09-30T05:47:52.089+00:00 │   peak VRAM    ~1.91 GB at batch 1 x seq 256 (2 rows — chosen+rejected are  │
+2026-09-30T05:47:52.089+00:00 │ one concatenated tensor) (logits 1.09 GB)                                   │
+2026-09-30T05:47:52.089+00:00 │   free VRAM    5.35 GB                                                      │
+2026-09-30T05:47:52.089+00:00 │   forecast     1823-2681 tok/s — a compute-bound bound, not a promise       │
+2026-09-30T05:47:52.089+00:00 │                (from 24.84 TFLOPS measured on this card now using bfloat16  │
+2026-09-30T05:47:52.089+00:00 │ @ 1702 MHz)                                                                 │
+2026-09-30T05:47:52.089+00:00 │   ! accumulating 4x at batch 1: the base is re-read once per micro-batch.   │
+2026-09-30T05:47:52.089+00:00 │ Per token that is free, but reaching effective batch 4 by raising           │
+2026-09-30T05:47:52.090+00:00 │ training.batch_size instead measured ~2.5x faster. Accumulation holds peak  │
+2026-09-30T05:47:52.090+00:00 │ VRAM flat, so raise batch_size while the budget above allows, then          │
+2026-09-30T05:47:52.090+00:00 │ accumulate for the rest.                                                    │
+2026-09-30T05:47:52.090+00:00 └─────────────────────────────────────────────────────────────────────────────┘
+2026-09-30T05:47:52.090+00:00 Layer streaming is BETA: slower than resident training, but this model may not 
+2026-09-30T05:47:52.090+00:00 run resident on this card at all.
+2026-09-30T05:47:52.091+00:00 expandable_segments allocator hint not enabled: Windows ignores it — torch 
+2026-09-30T05:47:52.091+00:00 warns and carries on
+2026-09-30T05:47:52.473+00:00 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+2026-09-30T05:47:59.769+00:00 Layer streaming ready: 28 layers, 2.62 GB pinned RAM store, 2 x 94 MB decoder 
+2026-09-30T05:47:59.769+00:00 buffers + 1 x 0 MB large-layer slot
+2026-09-30T05:47:59.776+00:00 LoRA applied: 2,179,072 trainable / 1,543,714,304 total (0.14%)
+2026-09-30T05:48:00.119+00:00 Adding EOS to train dataset:   0%|          | 0/16 [00:00<?, ? examples/s]
+2026-09-30T05:48:00.119+00:00 Adding EOS to train dataset: 100%|██████████| 16/16 [00:00<00:00, 1903.53 examples/s]
+2026-09-30T05:48:03.131+00:00 Tokenizing train dataset:   0%|          | 0/16 [00:00<?, ? examples/s]
+2026-09-30T05:48:03.132+00:00 Tokenizing train dataset: 100%|██████████| 16/16 [00:00<00:00, 251.25 examples/s]
+2026-09-30T05:48:03.156+00:00 [transformers] The model is already on multiple devices. Skipping the move to device specified in `args`.
+2026-09-30T05:48:03.185+00:00 Map:   0%|          | 0/16 [00:00<?, ? examples/s]
+2026-09-30T05:48:03.185+00:00 Map: 100%|██████████| 16/16 [00:00<00:00, 1429.16 examples/s]
+2026-09-30T05:48:03.215+00:00 Training started!
+2026-09-30T05:48:03.223+00:00 [transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+2026-09-30T05:48:10.213+00:00   0%|          | 0/4 [00:00<?, ?it/s]
+2026-09-30T05:48:10.215+00:00  25%|██▌       | 1/4 [00:06<00:20,  6.71s/it]
+2026-09-30T05:48:10.215+00:00                                              
+2026-09-30T05:48:10.215+00:00 {'loss': '0.6931', 'grad_norm': '6.511', 'learning_rate': '5e-05', 'entropy': '1.337', 'num_tokens': '1284', 'logits/chosen': '-2.525', 'logits/rejected': '-2.446', 'mean_token_accuracy': '0.6595', 'rewards/chosen': '0', 'rewards/rejected': '0', 'rewards/accuracies': '0', 'rewards/margins': '0', 'logps/chosen': '-255.8', 'logps/rejected': '-224.4', 'epoch': '0.25'}
+2026-09-30T05:48:15.938+00:00  25%|██▌       | 1/4 [00:06<00:20,  6.71s/it]
+2026-09-30T05:48:15.939+00:00  50%|█████     | 2/4 [00:12<00:12,  6.13s/it]
+2026-09-30T05:48:15.939+00:00                                              
+2026-09-30T05:48:15.939+00:00 {'loss': '0.6792', 'grad_norm': '5.075', 'learning_rate': '4.268e-05', 'entropy': '1.408', 'num_tokens': '3144', 'logits/chosen': '-2.547', 'logits/rejected': '-2.634', 'mean_token_accuracy': '0.5995', 'rewards/chosen': '0.01536', 'rewards/rejected': '-0.01328', 'rewards/accuracies': '0.75', 'rewards/margins': '0.02864', 'logps/chosen': '-359.4', 'logps/rejected': '-241.3', 'epoch': '0.5'}
+2026-09-30T05:48:21.588+00:00  50%|█████     | 2/4 [00:12<00:12,  6.13s/it]
+2026-09-30T05:48:21.590+00:00  75%|███████▌  | 3/4 [00:18<00:05,  5.91s/it]
+2026-09-30T05:48:21.590+00:00                                              
+2026-09-30T05:48:21.590+00:00 {'loss': '0.6717', 'grad_norm': '3.969', 'learning_rate': '2.5e-05', 'entropy': '1.302', 'num_tokens': '4349', 'logits/chosen': '-2.389', 'logits/rejected': '-2.299', 'mean_token_accuracy': '0.6018', 'rewards/chosen': '0.002617', 'rewards/rejected': '-0.04395', 'rewards/accuracies': '0.75', 'rewards/margins': '0.04656', 'logps/chosen': '-247.3', 'logps/rejected': '-197.4', 'epoch': '0.75'}
+2026-09-30T05:48:27.746+00:00  75%|███████▌  | 3/4 [00:18<00:05,  5.91s/it]
+2026-09-30T05:48:27.747+00:00 100%|██████████| 4/4 [00:24<00:00,  6.01s/it]
+2026-09-30T05:48:27.747+00:00                                              
+2026-09-30T05:48:27.747+00:00 {'loss': '0.7166', 'grad_norm': '5.054', 'learning_rate': '7.322e-06', 'entropy': '1.214', 'num_tokens': '5830', 'logits/chosen': '-2.491', 'logits/rejected': '-2.171', 'mean_token_accuracy': '0.6549', 'rewards/chosen': '-0.04124', 'rewards/rejected': '0.004319', 'rewards/accuracies': '0.25', 'rewards/margins': '-0.04556', 'logps/chosen': '-268.2', 'logps/rejected': '-209.4', 'epoch': '1'}
+2026-09-30T05:48:29.536+00:00 100%|██████████| 4/4 [00:24<00:00,  6.01s/it]
+2026-09-30T05:48:29.536+00:00                                              
+2026-09-30T05:48:29.536+00:00 {'train_runtime': '26.04', 'train_samples_per_second': '0.615', 'train_steps_per_second': '0.154', 'train_loss': '0.6902', 'epoch': '1'}
+2026-09-30T05:48:29.538+00:00 100%|██████████| 4/4 [00:26<00:00,  6.01s/it]
+2026-09-30T05:48:29.538+00:00 100%|██████████| 4/4 [00:26<00:00,  6.51s/it]
+2026-09-30T05:48:29.540+00:00 ┌───────────────── Soup Training: Qwen/Qwen2.5-1.5B-Instruct ─────────────────┐
+2026-09-30T05:48:29.541+00:00 │ Epoch 1.0/1   100%                                                          │
+2026-09-30T05:48:29.541+00:00 │ Step:  4/4                                                                  │
+2026-09-30T05:48:29.541+00:00 │ Loss:  0.7166    LR: 7.32e-06                                               │
+2026-09-30T05:48:29.541+00:00 │ Speed: 0.15 it/s                                                            │
+2026-09-30T05:48:29.541+00:00 │ GPU peak: 2.1/6.0 GB                                                        │
+2026-09-30T05:48:29.541+00:00 │ Grad:  5.0544                                                               │
+2026-09-30T05:48:31.225+00:00 └──────────────────── NVIDIA GeForce RTX 3060 Laptop GPU ─────────────────────┘┌──────────────────────────── Training Complete! ─────────────────────────────┐
+2026-09-30T05:48:31.225+00:00 │ Loss: 0.6931 -> 0.7166                                                      │
+2026-09-30T05:48:31.225+00:00 │ Duration: 0m                                                                │
+2026-09-30T05:48:31.225+00:00 │ Output: runs\smoke                                                          │
+2026-09-30T05:48:31.225+00:00 │ Run ID: run_20260930_084734_813d6aa1                                        │
+2026-09-30T05:48:31.225+00:00 │                                                                             │
+2026-09-30T05:48:31.225+00:00 │ Quick test:  soup chat --model runs\smoke                                   │
+2026-09-30T05:48:31.225+00:00 │ Push to HF:  soup push --model runs\smoke                                   │
+2026-09-30T05:48:31.225+00:00 │ Merge LoRA:  soup merge --adapter runs\smoke                                │
+2026-09-30T05:48:31.225+00:00 │ Export GGUF: soup export --model runs\smoke                                 │
+2026-09-30T05:48:31.225+00:00 │ Run details: soup runs show run_20260930_084734_813d6aa1                    │
+2026-09-30T05:48:31.225+00:00 └─────────────────────────────────────────────────────────────────────────────┘
+2026-09-30T05:48:31.303+00:00 MEASURED_CUDA_MEMORY {"device": "NVIDIA GeForce RTX 3060 Laptop GPU", "max_memory_allocated_gib": 2.089, "max_memory_reserved_gib": 2.748, "total_gib": 6.0}
