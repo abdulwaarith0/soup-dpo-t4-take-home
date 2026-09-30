@@ -1,0 +1,18 @@
+2026-09-30T06:26:40.762+00:00 $ python scripts/audit_data.py --data data/train.jsonl --max-length 1024
+2026-09-30T06:26:45.820+00:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-09-30T06:26:48.590+00:00 rows: 500   file: data/train.jsonl
+2026-09-30T06:26:48.590+00:00 tokenizer: Qwen/Qwen2.5-1.5B-Instruct   max_length: 1024
+2026-09-30T06:26:48.590+00:00   chosen contains '</s>'                            500  (100.0%)
+2026-09-30T06:26:48.590+00:00   chosen contains '<|assistant|>'                   500  (100.0%)
+2026-09-30T06:26:48.590+00:00   chosen mostly Latin script (code / English)        22  (  4.4%)
+2026-09-30T06:26:48.590+00:00   prompt contains '</s>'                            500  (100.0%)
+2026-09-30T06:26:48.590+00:00   prompt contains '<|user|>'                        500  (100.0%)
+2026-09-30T06:26:48.590+00:00   rejected contains '</s>'                          500  (100.0%)
+2026-09-30T06:26:48.590+00:00   rejected contains '<|assistant|>'                 500  (100.0%)
+2026-09-30T06:26:48.590+00:00   chosen longer than rejected (characters)          348  ( 69.6%)
+2026-09-30T06:26:48.590+00:00   duplicate prompts (beyond first)                    0
+2026-09-30T06:26:48.590+00:00   pairs longer than max_length (truncated)           22  (  4.4%)
+2026-09-30T06:26:48.590+00:00      chosen cut                                      17
+2026-09-30T06:26:48.590+00:00      rejected cut                                     8
+2026-09-30T06:26:48.590+00:00      both cut (neither ending seen)                   3
+2026-09-30T06:26:48.590+00:00 Qwen2.5 special tokens for comparison: ['<|im_start|>'] vs '<|user|>' -> ['<', '|', 'user', '|', '>']
