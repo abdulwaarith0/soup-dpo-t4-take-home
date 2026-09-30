@@ -1,0 +1,81 @@
+{
+  "base": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dtype": "float32",
+  "device": "Tesla T4",
+  "arms": {
+    "trained": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "56/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "/content/models/Qwen2.5-1.5B-Instruct",
+        "pass": true
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "1.32e-04",
+        "max_rel_delta": "1.88e-04"
+      },
+      "B_max_logit_shift": 0.58306,
+      "C_holdout": {
+        "n": 100,
+        "accuracy": 0.6,
+        "accuracy_95ci": [
+          0.502,
+          0.691
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.00601
+      },
+      "C_train_same_n": {
+        "n": 100,
+        "accuracy": 0.79,
+        "accuracy_95ci": [
+          0.7,
+          0.858
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.02472
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.229,
+        "accuracy_95ci": [
+          0.121,
+          0.39
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.01319
+      },
+      "D_holdout_chat_template": {
+        "n": 100,
+        "accuracy": 0.58,
+        "accuracy_95ci": [
+          0.482,
+          0.672
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.00307
+      },
+      "verdict": {
+        "A_artifact": true,
+        "B_load": true,
+        "C_learned_on_unseen_pairs": true
+      }
+    }
+  },
+  "overall_pass": true
+}
