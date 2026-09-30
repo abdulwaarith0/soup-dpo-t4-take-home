@@ -1,0 +1,37 @@
+# The run under review: DPO with layer streaming on a free Colab T4.
+# Every key that changes the run is written out, so no default decides it silently.
+base: Qwen/Qwen2.5-1.5B-Instruct
+task: dpo
+backend: transformers
+
+data:
+  train: ./data/smoke_fixed.jsonl
+  format: dpo
+  max_length: 256
+  val_split: 0.0          # 0.75.1 default is 0.1, and DPO never evaluates it (see report)
+
+training:
+  epochs: 1
+  lr: 5.0e-5              # LoRA rate; the catalog's 5e-6 DPO recipes are full-model rates
+  batch_size: 1
+  gradient_accumulation_steps: 4   # effective batch 8 -> 63 optimizer steps per epoch
+  warmup_ratio: 0.1
+  scheduler: cosine
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  dpo_beta: 0.1
+  seed: 42
+  logging_steps: 1
+  save_steps: 1000
+  quantization: none      # fp16 store on a T4 (no bf16 units); 1.5B x 2 B = ~3.1 GB of host RAM
+  gradient_checkpointing: true
+  stream_layers: true
+  stream_source: ram
+  stream_buffers: 2
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.0
+    target_modules: auto
+
+output: ./runs/smoke_fixed
