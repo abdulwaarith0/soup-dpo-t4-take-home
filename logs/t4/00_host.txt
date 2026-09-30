@@ -1,0 +1,8 @@
+Wed Sep 30 06:16:51 AM UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:            12Gi       1.1Gi       8.2Gi       2.2Mi       3.6Gi        11Gi
+Swap:             0B          0B          0B
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         113G   48G   66G  43% /
+2
+model name	: Intel(R) Xeon(R) CPU @ 2.00GHz
