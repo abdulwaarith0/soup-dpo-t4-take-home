@@ -1,0 +1,354 @@
+{
+  "base": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dtype": "float32",
+  "device": "Tesla T4",
+  "arms": {
+    "trained": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "56/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "/content/models/Qwen2.5-1.5B-Instruct",
+        "pass": true
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "1.28e-03",
+        "max_rel_delta": "1.83e-03"
+      },
+      "B_max_logit_shift": 2.22279,
+      "C_holdout": {
+        "n": 100,
+        "accuracy": 0.58,
+        "accuracy_95ci": [
+          0.482,
+          0.672
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.06544
+      },
+      "C_train_same_n": {
+        "n": 100,
+        "accuracy": 0.81,
+        "accuracy_95ci": [
+          0.722,
+          0.875
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.25303
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.171,
+        "accuracy_95ci": [
+          0.081,
+          0.327
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.125
+      },
+      "D_holdout_chat_template": {
+        "n": 100,
+        "accuracy": 0.56,
+        "accuracy_95ci": [
+          0.462,
+          0.653
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.03257
+      },
+      "D_holdout_chat_template_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.257,
+        "accuracy_95ci": [
+          0.142,
+          0.421
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.07331
+      },
+      "E_length_balanced_holdout": {
+        "accuracy": 0.486,
+        "accuracy_95ci": [
+          0.407,
+          0.565
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.8
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.171
+        }
+      },
+      "E_length_balanced_chat_template": {
+        "accuracy": 0.49,
+        "accuracy_95ci": [
+          0.4,
+          0.581
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.723
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.257
+        }
+      },
+      "verdict": {
+        "A_artifact": true,
+        "B_load": true,
+        "C_beats_length_heuristic_in_serving_format": false
+      },
+      "superseded_rule_holdout_accuracy_above_0.5": false
+    },
+    "null": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "0/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "/content/models/Qwen2.5-1.5B-Instruct",
+        "pass": false
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "0.00e+00",
+        "max_rel_delta": "0.00e+00"
+      },
+      "B_max_logit_shift": 0.0,
+      "C_holdout": {
+        "n": 100,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.037
+        ],
+        "exact_ties": 100,
+        "mean_margin": 0.0
+      },
+      "C_train_same_n": {
+        "n": 100,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.037
+        ],
+        "exact_ties": 100,
+        "mean_margin": 0.0
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.099
+        ],
+        "exact_ties": 35,
+        "mean_margin": 0.0
+      },
+      "D_holdout_chat_template": {
+        "n": 100,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.037
+        ],
+        "exact_ties": 100,
+        "mean_margin": 0.0
+      },
+      "D_holdout_chat_template_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.099
+        ],
+        "exact_ties": 35,
+        "mean_margin": 0.0
+      },
+      "E_length_balanced_holdout": {
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.0
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.0
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.0
+        }
+      },
+      "E_length_balanced_chat_template": {
+        "accuracy": 0.0,
+        "accuracy_95ci": [
+          0.0,
+          0.0
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.0
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.0
+        }
+      },
+      "verdict": {
+        "A_artifact": false,
+        "B_load": false,
+        "C_beats_length_heuristic_in_serving_format": false
+      },
+      "superseded_rule_holdout_accuracy_above_0.5": false
+    },
+    "random": {
+      "A_artifact": {
+        "tensors_in_file": 112,
+        "tensors_expected": 112,
+        "inner_keys": 0,
+        "lora_B_nonzero": "56/56",
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "r": 16,
+        "lora_alpha": 32,
+        "base_model_name_or_path": "/content/models/Qwen2.5-1.5B-Instruct",
+        "pass": true
+      },
+      "B_load": {
+        "matched": 112,
+        "mismatched": 0,
+        "missing": 0,
+        "pass": true
+      },
+      "B_delta_norms": {
+        "modules": 56,
+        "mean_rel_delta": "1.27e-03",
+        "max_rel_delta": "1.78e-03"
+      },
+      "B_max_logit_shift": 0.15153,
+      "C_holdout": {
+        "n": 100,
+        "accuracy": 0.43,
+        "accuracy_95ci": [
+          0.337,
+          0.528
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.00051
+      },
+      "C_train_same_n": {
+        "n": 100,
+        "accuracy": 0.49,
+        "accuracy_95ci": [
+          0.394,
+          0.587
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.00051
+      },
+      "D_holdout_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.514,
+        "accuracy_95ci": [
+          0.356,
+          0.67
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.00053
+      },
+      "D_holdout_chat_template": {
+        "n": 100,
+        "accuracy": 0.52,
+        "accuracy_95ci": [
+          0.423,
+          0.615
+        ],
+        "exact_ties": 0,
+        "mean_margin": -0.00035
+      },
+      "D_holdout_chat_template_chosen_shorter": {
+        "n": 35,
+        "accuracy": 0.657,
+        "accuracy_95ci": [
+          0.492,
+          0.792
+        ],
+        "exact_ties": 0,
+        "mean_margin": 0.00151
+      },
+      "E_length_balanced_holdout": {
+        "accuracy": 0.449,
+        "accuracy_95ci": [
+          0.348,
+          0.551
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.385
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.514
+        }
+      },
+      "E_length_balanced_chat_template": {
+        "accuracy": 0.552,
+        "accuracy_95ci": [
+          0.452,
+          0.651
+        ],
+        "chosen_longer": {
+          "n": 65,
+          "accuracy": 0.446
+        },
+        "chosen_shorter": {
+          "n": 35,
+          "accuracy": 0.657
+        }
+      },
+      "verdict": {
+        "A_artifact": true,
+        "B_load": true,
+        "C_beats_length_heuristic_in_serving_format": false
+      },
+      "superseded_rule_holdout_accuracy_above_0.5": false
+    }
+  },
+  "overall_pass": false,
+  "controls_rejected": {
+    "null": true,
+    "random": true
+  }
+}
