@@ -3,8 +3,7 @@
 The task allows AI tools and asks where they were used, what was accepted, and what was verified,
 changed or redone. This is that record.
 
-**Tool.** Claude Code (Anthropic's Claude, Opus 5.5) on my machine, with its browser extension driving
-the Colab notebook in my own Chrome session. No other AI tool was used.
+**Tool.** Claude Code (Anthropic's Claude, Opus 5.5) on my machine. No other AI tool was used.
 
 ## What the AI did
 
